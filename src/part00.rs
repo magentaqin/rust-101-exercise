@@ -23,12 +23,13 @@ fn vec_min(vec: Vec<i32>) -> NumberOrNothing {
             // In this case (*arm*) of the `match`, `min` is currently nothing, so let's just make
             // it the number `el`.
             NumberOrNothing::Nothing => {
-                unimplemented!()
+                min = NumberOrNothing::Number(el);
             },
             // In this arm, `min` is currently the number `n`, so let's compute the new minimum and
             // store it.
             NumberOrNothing::Number(n) => {
-                unimplemented!()
+                let new_min = min_i32(n, el);
+                min = NumberOrNothing::Number(new_min);
             }
         }
     }
@@ -39,9 +40,9 @@ fn vec_min(vec: Vec<i32>) -> NumberOrNothing {
 // Now that we reduced the problem to computing the minimum of two integers, let's do that.
 fn min_i32(a: i32, b: i32) -> i32 {
     if a < b {
-        unimplemented!()
+        return a;
     } else {
-        unimplemented!()
+        return b;
     }
 }
 
@@ -57,13 +58,16 @@ use self::NumberOrNothing::{Number,Nothing};
 // a list of numbers, but for now, let's just hard-code something.
 
 fn read_vec() -> Vec<i32> {
-    unimplemented!()
+    vec![18,5,7,1,9,27]
 }
 
 // Of course, we would also like to actually see the result of the computation, so we need to print the result.
 
 fn print_number_or_nothing(n: NumberOrNothing) {
-    unimplemented!()
+    match n {
+        Nothing => println!("The number is: <nothing>"),
+        Number(n) => println!("The number is: {}", n),
+    };
 }
 
 // Putting it all together:
