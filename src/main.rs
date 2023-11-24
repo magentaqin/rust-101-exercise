@@ -29,5 +29,5 @@ mod part01_qm;
 
 // This decides which part is actually run.
 fn main() {
-   part01_qm::main();
+   part02::main();
 }
