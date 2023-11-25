@@ -5,7 +5,7 @@
 // I/O is provided by the module `std::io`, so we first have to import that with `use`.
 // We also import the I/O *prelude*, which makes a bunch of commonly used I/O stuff
 // directly available.
-use std::io::prelude::*;
+use std::{io::prelude::*, ptr::NonNull};
 use std::io;
 
 fn read_vec() -> Vec<i32> {
@@ -24,11 +24,11 @@ fn read_vec() -> Vec<i32> {
 
         match line.trim().parse::<i32>() {
             Ok(num) => {
-                unimplemented!()
+                vec.push(num)
             },
             // We don't care about the particular error, so we ignore it with a `_`.
             Err(_) => {
-                unimplemented!()
+                println!("What did I say about numbers?")
             },
         }
     }
@@ -44,7 +44,8 @@ use part02::{SomethingOrNothing,Something,Nothing,vec_min};
 // and tell you the minimum. Neat, isn't it?
 pub fn main() {
     let vec = read_vec();
-    unimplemented!()
+    let min = vec_min(vec);
+    min.print();
 }
 
 // **Exercise 03.1**: The goal is to write a generic version of `SomethingOrNothing::print`.
@@ -62,14 +63,22 @@ pub fn main() {
 // *Hint*: There is a macro `print!` for printing without appending a newline.
 pub trait Print {
     /* Add things here */
+    fn print2(self) -> ();
 }
 impl Print for i32 {
-    /* Add things here */
+    fn print2(self) -> () {
+        print!("My numer is {}", self);
+      }
 }
 impl<T: Print> SomethingOrNothing<T> {
-    fn print2(self) {
-        unimplemented!()
-    }
+      fn print2(self) -> () {
+        match self {
+            Nothing => println!("My number is: <nothing>"),
+            Something(n) => {
+                n.print2()
+            }
+          }
+      }
 }
 
 // **Exercise 03.2**: Building on exercise 02.2, implement all the things you need on `f32` to make
