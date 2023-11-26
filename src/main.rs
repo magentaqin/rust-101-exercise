@@ -28,8 +28,9 @@ mod part00_qm;
 mod part01_qm;
 mod part02_qm;
 mod part03_qm;
+mod part04_qm;
 
 // This decides which part is actually run.
 fn main() {
-   part03_qm::main();
+   part04_qm::ownership_demo();
 }
