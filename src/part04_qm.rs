@@ -31,3 +31,22 @@ pub fn shared_ref_demo() {
   // The second min is Some(1)
   println!("The second min is {:?}", second_min);
 }
+
+fn vec_increment(v: &mut Vec<i32>) {
+  for e in v.iter_mut() {
+    *e += 1;
+  }
+}
+
+
+pub fn mutable_ref_demo() {
+  let mut v = vec![5,4,3,2,1];
+  vec_increment(&mut v);
+  // After first mutation: [6, 5, 4, 3, 2]
+  println!("After first mutation: {:?}", v);
+
+  // Here, the v is based on [6, 5, 4, 3, 2]
+  vec_increment(&mut v);
+  // After second mutation: [7, 6, 5, 4, 3]
+  println!("After second mutation: {:?}", v);
+}
