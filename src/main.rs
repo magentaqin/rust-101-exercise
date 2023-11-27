@@ -32,5 +32,5 @@ mod part04_qm;
 
 // This decides which part is actually run.
 fn main() {
-   part04_qm::mutable_ref_demo();
+   part05::clone_demo();
 }
