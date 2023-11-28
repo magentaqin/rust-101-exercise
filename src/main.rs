@@ -32,5 +32,5 @@ mod part04_qm;
 
 // This decides which part is actually run.
 fn main() {
-   part05::clone_demo();
+   part05::main();
 }

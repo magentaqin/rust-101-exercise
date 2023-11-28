@@ -61,6 +61,7 @@ impl Clone for BigInt {
     }
 }
 
+
 // We can also make the type `SomethingOrNothing<T>` implement `Clone`.
 use part02::{SomethingOrNothing,Something,Nothing};
 impl<T: Clone> Clone for SomethingOrNothing<T> {
@@ -84,10 +85,20 @@ enum Variant {
 fn work_on_variant(mut var: Variant, text: String) {
     let mut ptr: &mut i32;
     match var {
+        // `var` is borrowed here!
+        // ptr points to the number that’s stored in var
         Variant::Number(ref mut n) => ptr = n,
         Variant::Text(_) => return,
     }
-    /* var = Variant::Text(text); */                                /* BAD! */
+    // ERROR! `var` is assigned to here but it was already borrowed
+    // var = Variant::Text(text);                              /* BAD! */
     *ptr = 1337;
 }
 
+use self::Variant::{Number, Text};
+
+pub fn main() {
+    let num: Variant = Number(1);
+    let txt: String = "qm".to_string();
+    work_on_variant(num, txt);
+}
