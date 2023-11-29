@@ -17,7 +17,7 @@ impl BigInt {
             other
         } else {
             // **Exercise 06.1**: Fill in this code.
-            unimplemented!()
+            self
         }
     }
 }
@@ -29,7 +29,11 @@ fn vec_min(v: &Vec<BigInt>) -> Option<BigInt> {
     // `iter`, the iterator that borrows the elements.
     for e in v {
         let e = e.clone();
-        unimplemented!()
+        min = Some(match min {
+            None => e,
+            Some(n) => e.min_try1(n)
+        });
+        
     }
     min
 }
@@ -44,7 +48,7 @@ impl<T: Copy> Copy for SomethingOrNothing<T> {}
 
 fn head<T>(v: &Vec<T>) -> Option<&T> {
     if v.len() > 0 {
-        unimplemented!()
+        Some(&v[0])
     } else {
         None
     }
