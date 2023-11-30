@@ -24,7 +24,13 @@ pub fn vec_min<T: Minimum>(v: &Vec<T>) -> Option<&T> {
 // exercise 06.1. You should *not* make any copies of `BigInt`!
 impl Minimum for BigInt {
     fn min<'a>(&'a self, other: &'a Self) -> &'a Self {
-        unimplemented!()
+        if self.data.len() < other.data.len() {
+            self
+        } else if (self.data.len() > other.data.len()) {
+            other
+        } else {
+            self
+        }
     }
 }
 
