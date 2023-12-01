@@ -40,7 +40,7 @@ impl PartialEq for BigInt {
     #[inline]
     fn eq(&self, other: &BigInt) -> bool {
         debug_assert!(self.test_invariant() && other.test_invariant());
-        unimplemented!()
+        self.data == other.data
     }
 }
 
@@ -61,7 +61,8 @@ fn test_min() {
     let b2 = BigInt::new(42);
     let b3 = BigInt::from_vec(vec![0, 1]);
 
-    unimplemented!()
+    assert!(*b1.min(&b2) == b1);
+    assert!(*b3.min(&b2) == b2);
 }
 // Now run `cargo test` to execute the test. If you implemented `min` correctly, it should all work!
 
@@ -86,7 +87,8 @@ fn test_vec_min() {
 
     let v1 = vec![b2.clone(), b1.clone(), b3.clone()];
     let v2 = vec![b2.clone(), b3.clone()];
-    unimplemented!()
+    assert_eq!(vec_min(&v1), Some(&b1));
+    assert_eq!(vec_min(&v2), Some(&b2));
 }
 
 // **Exercise 07.1**: Add some more testcases. In particular, make sure you test the behavior of
