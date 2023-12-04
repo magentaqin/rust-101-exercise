@@ -57,7 +57,8 @@ impl ops::Add<BigInt> for BigInt {
             carry = new_carry;
         }
         // **Exercise 08.2**: Handle the final `carry`, and return the sum.
-        unimplemented!()
+        // unimplemented!()
+        BigInt { data: vec![] }
     }
 }
 

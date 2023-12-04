@@ -33,5 +33,5 @@ mod part05_qm;
 
 // This decides which part is actually run.
 fn main() {
-   part08::test_overflowing_add();
+   part09::main();
 }
